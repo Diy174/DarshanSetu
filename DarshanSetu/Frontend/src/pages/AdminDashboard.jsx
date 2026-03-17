@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const AdminDashboard = () => {
   const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState('map')
@@ -39,7 +41,7 @@ const AdminDashboard = () => {
 
     try {
       const res = await axios.get(
-        `http://localhost:8000/api/v1/admin/get-map/${temple_id}`,
+        `${API_BASE_URL}/api/v1/admin/get-map/${temple_id}`,
         { withCredentials: true }
       )
       
@@ -60,7 +62,7 @@ const AdminDashboard = () => {
     e.preventDefault()
     try {
       const res = await axios.post(
-        'http://localhost:8000/api/v1/admin/logout',
+        `${API_BASE_URL}/api/v1/admin/logout`,
         {},
         { withCredentials: true }
       )
@@ -104,7 +106,7 @@ const AdminDashboard = () => {
 
     try {
       const res = await axios.post(
-        'http://localhost:8000/api/v1/admin/upload-map',
+        `${API_BASE_URL}/api/v1/admin/upload-map`,
         formData,
         {
           headers: {

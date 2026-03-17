@@ -4,6 +4,7 @@ import { useBooking } from '../context/BookingContext'
 import useTranslation from '../hooks/useTranslation'
 import axios from 'axios'
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const SlotAvailability = () => {
   const navigate = useNavigate()
@@ -57,7 +58,7 @@ const SlotAvailability = () => {
     setLoadingSlots(true)
     try {
       const response = await axios.get(
-        'http://localhost:8000/api/v1/bookings/slot-availability',
+        `${API_BASE_URL}/api/v1/bookings/slot-availability`,
         {
           params: {
             temple: booking.temple.name,
@@ -109,7 +110,7 @@ const SlotAvailability = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:8000/api/v1/bookings/initialize-slots',
+        `${API_BASE_URL}/api/v1/bookings/initialize-slots`,
         {
           temple: booking.temple.name,
           date: visitDate,

@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { useBooking } from '../context/BookingContext'
 import axios from 'axios'
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const TempleMap = () => {
   const navigate = useNavigate()
   const { booking } = useBooking()
@@ -42,7 +44,7 @@ const TempleMap = () => {
   
       
       const res = await axios.get(
-        `http://localhost:8000/api/v1/admin/get-map/${backendTempleId}`,
+        `${API_BASE_URL}/api/v1/admin/get-map/${backendTempleId}`,
         { withCredentials: true }
       )
 

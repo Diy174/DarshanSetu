@@ -47,7 +47,7 @@ const UserAccess = () => {
 
     try {
       const res = await axios.post(
-        'http://localhost:8000/api/v1/users/login', loginData,
+        `${API_BASE_URL}/api/v1/users/login`, loginData,
         { headers: { 'Content-Type': 'application/json' } }
       );
 
@@ -93,7 +93,7 @@ const UserAccess = () => {
 
     try {
       const res = await axios.post(
-        'http://localhost:8000/api/v1/users/register', userInfo,
+        `${API_BASE_URL}/api/v1/users/register`, userInfo,
         { headers: { 'Content-Type': 'application/json' } }
       );
 
@@ -149,7 +149,7 @@ const UserAccess = () => {
 
     try {
       const res = await axios.post(
-        'http://localhost:8000/api/v1/users/reset-password', userInfo,
+        `${API_BASE_URL}/api/v1/users/reset-password`, userInfo,
         { headers: { 'Content-Type': 'application/json' } }
       );
 

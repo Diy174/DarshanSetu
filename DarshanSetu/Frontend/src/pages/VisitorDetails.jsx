@@ -4,6 +4,8 @@ import { useBooking } from '../context/BookingContext'
 import useTranslation from '../hooks/useTranslation'
 import axios from "axios"
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const VisitorDetails = () => {
   const navigate = useNavigate()
   const { booking, updateBooking } = useBooking()
@@ -117,7 +119,7 @@ const VisitorDetails = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/v1/bookings/booking",
+        `${API_BASE_URL}/api/v1/bookings/booking`,
         bookingInfo,
         { headers: { 'content-Type': 'application/json' } }
       )

@@ -1,5 +1,5 @@
 import axios from "axios"; //js lib used to make HTTP req from frontend and backend
-axios.defaults.baseURL = "http://localhost:8000";
+axios.defaults.baseURL = import.meta.env.VITE_API_BASE_UR;
 axios.defaults.withCredentials = true;
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'

@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const AdminLogin = () => {
   const navigate = useNavigate()
   const [contactNo, setContactNo] = useState('')
@@ -23,7 +25,7 @@ const AdminLogin = () => {
     try {
       
       const res = await axios.post(
-        'http://localhost:8000/api/v1/admin/login',
+        `${API_BASE_URL}/api/v1/admin/login`,
         loginData,
         { 
           headers: { 'Content-Type': 'application/json' },
