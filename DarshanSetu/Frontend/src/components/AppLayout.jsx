@@ -6,6 +6,8 @@ import { languages, languageNames } from '../i18n/languages'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const navLinks = [
   { labelKey: 'nav.home', to: '/' },
   { labelKey: 'nav.about', to: '/about' },
@@ -64,7 +66,7 @@ const AppLayout = ({ children }) => {
 
     try {
       const response = await axios.post(
-        'http://localhost:8000/api/v1/bookings/cancel-booking',
+        `${API_BASE_URL}/api/v1/bookings/cancel-booking`,
         { bookingId: cancellingBooking._id },
         {
           withCredentials: true,
@@ -84,7 +86,7 @@ const AppLayout = ({ children }) => {
         setCancellingBooking(null);
         try {
           const res = await axios.get(
-            "http://localhost:8000/api/v1/bookings/booking-history",
+            `${API_BASE_URL}/api/v1/bookings/booking-history`,
             { withCredentials: true }
           );
 
@@ -150,7 +152,7 @@ const AppLayout = ({ children }) => {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:8000/api/v1/users/logout",
+        `${API_BASE_URL}/api/v1/users/logout`,
         {},
         { withCredentials: true }
       );
@@ -183,7 +185,7 @@ const AppLayout = ({ children }) => {
     const fetchBookings = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8000/api/v1/bookings/booking-history", {
+          `${API_BASE_URL}/api/v1/bookings/booking-history`, {
           withCredentials: true
         })
 
