@@ -161,7 +161,7 @@ export const BookingProvider = ({ children }) => {
         console.log(`Using future API (${diffDays} days ahead)`)
       }
       
-      const url = `http://api.weatherapi.com/v1/${endpoint}?key=${apiKey}&q=${lat},${lon}&dt=${visitDate}&aqi=no`
+      const url = `https://api.weatherapi.com/v1/${endpoint}?key=${apiKey}&q=${lat},${lon}&dt=${visitDate}&aqi=no`
       
       const res = await fetch(url)
       if (!res.ok) {

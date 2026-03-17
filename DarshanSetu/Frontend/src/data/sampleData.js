@@ -1,3 +1,12 @@
+import kashiImg from "../assets/temples/kashi.jpg";
+import somnathImg from "../assets/temples/somnath.jpg";
+import dwarkadhishImg from "../assets/temples/dwarkadhish.avif";
+import tirupatiImg from "../assets/temples/tirupati.avif";
+import maduraiImg from "../assets/temples/madurai.webp";
+import puriImg from "../assets/temples/jagannath_puri.jpg";
+import ambajiImg from "../assets/temples/ambaji.webp";
+import vaishnoImg from "../assets/temples/vaishno-devi.webp";
+
 export const temples = [
   {
     id: 'kv',
@@ -13,8 +22,7 @@ export const temples = [
       'One of the twelve Jyotirlingas rebuilt multiple times, the present structure was commissioned by Maharani Ahilyabai Holkar in 1780.',
     origin:
       'Legends say Lord Shiva manifested here after the cosmic churning, sanctifying the confluence of the Ganga with divine energy.',
-    image:
-      'https://kashi.gov.in/cmsadmin/getApiFile/CMS/68c3e3daadb281757668314~jpg',
+    image: kashiImg,
   },
   {
     id: 'somnath',
@@ -31,8 +39,7 @@ export const temples = [
       'According to legend, the Moon God (Soma) built the first Somnath temple in gold to thank Lord Shiva for curing him of a curse. As the first of the twelve Jyotirlingas, the site was revered long before the first recorded temple was constructed.',
     origin:
       'Over the centuries, the temple was attacked by various invaders, including rulers from the Delhi Sultanate, the Portuguese, and Mughal emperor Aurangzeb. The current temple was reconstructed post-Indian independence, with Sardar Vallabhbhai Patel initiating the project and President Rajendra Prasad performing the consecration in 1951.',
-    image:
-      'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Somanath_mandir_%28cropped%29.jpg/1100px-Somanath_mandir_%28cropped%29.jpg',
+    image: somnathImg,
   },
   {
     id: 'dwarkadish',
@@ -49,9 +56,8 @@ export const temples = [
       'The original Dwarkadhish temple was constructed by Vajranabha, Lord Krishna\'s great-grandson, on the site of Krishna\'s residence, but the current structure was rebuilt in the 16th century following its destruction in 1472. ',
     origin:
       'According to legend, the city of Dwarka was founded by Lord Krishna on land he reclaimed from the sea. The temple\'s specific origin is credited to his great-grandson, Vajranabha, who is believed to have built the first temple over Krishna\'s home more than 2,500 years ago.',
-    image:
-      'https://www.daiwikhotels.com/wp-content/uploads/2024/07/Dwarkadish-temple-2.jpg',
-  },
+    image: dwarkadhishImg,
+    },
   {
     id: 'tirupati',
     name: 'Tirumala Tirupati Devasthanams',
@@ -67,8 +73,7 @@ export const temples = [
       'The hill shrine of Lord Venkateswara receives over 50,000 pilgrims a day and is known for its laddu prasadam tradition since 1712.',
     origin:
       'Mythology narrates that Lord Venkateswara descended to Tirumala to save humanity during Kali Yuga, with the temple foundation laid by the Pallavas.',
-    image:
-      'https://static.toiimg.com/thumb/msid-98194132,width-1070,height-580,imgsize-1694330,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg',
+    image: tirupatiImg,
   },
   {
     id: 'madurai',
@@ -85,9 +90,8 @@ export const temples = [
       'A Dravidian architectural marvel with 14 gopurams, the temple celebrates the celestial wedding of Meenakshi and Sundareswarar every April.',
     origin:
       'Built by the Nayak dynasty in the 16th century, the shrine marks the legend of the warrior princess Meenakshi and Lord Shiva’s union.',
-    image:
-      'https://sanatanajourney.com/wp-content/uploads/2025/03/Madurai-Meenakshi-Amman-Temple-Features.jpg',
-  },
+    image: maduraiImg,
+    },
   {
     id: 'puri',
     name: 'Shri Jagannath Puri',
@@ -103,9 +107,8 @@ export const temples = [
       'Home to the iconic Rath Yatra, the shrine of Lord Jagannath is believed to have been originally built in the 12th century by King Anantavarman.',
     origin:
       'Texts describe Lord Jagannath emerging from a sacred log found by King Indradyumna, symbolizing universal brotherhood and compassion.',
-    image:
-      'https://media.istockphoto.com/id/1069137628/photo/top-of-the-jagannath-temple-puri-odisha-india.jpg?s=612x612&w=0&k=20&c=QIj54CAlnD_CKzb1roAVms9f2fdWnqwOb3BMSMvbee4=',
-  },
+    image: puriImg,
+    },
   {
     id: 'ambaji',
     name: 'Shri Ambaji Mata Temple',
@@ -121,9 +124,8 @@ export const temples = [
       'The site is believed to have been a place of worship for the Mother Goddess since pre-Vedic times.',
     origin:
       'The temple\'s most significant origin story ties it to the myth of the Shakti Peethas, sacred shrines where body parts of the goddess Sati are believed to have fallen. ',
-    image:
-      'https://i1.wp.com/blog.templesofindia.org/wp-content/uploads/2021/09/EfD7MrVUEAIh_lr.jpg?fit=650%2C540&ssl=1&w=640',
-  },
+    image: ambajiImg,
+    },
   {
     id: 'vaishno-devi',
     name: 'Vaishno Devi Temple',
@@ -139,9 +141,8 @@ export const temples = [
       'The holy cave is believed to be millions of years old, with the earliest references to the goddess dating back to the epic Mahabharata, where Lord Krishna advised Arjuna to seek her blessings.',
     origin:
       'The legend of Vaishno Devi is rooted in Hindu mythology and recounts the story of Vaishnavi, a human girl who was an incarnation of the goddesses Mahakali, Mahalakshmi, and Mahasaraswati.',
-    image:
-      'https://mohitbangari.com/wp-content/uploads/2024/07/Best-Time-To-Visit-Mata-Vaishno-Devi-Temple.jpg.webp',
-  },
+    image: vaishnoImg,
+    },
 ]
 
 export const locationFilters = temples.reduce((acc, temple) => {
