@@ -40,7 +40,7 @@ const UserAccess = () => {
   const [errorMsg, setErrorMsg] = useState("");
 
   const handleLogin = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     setErrorMsg("");
 
     const loginData = {
@@ -50,47 +50,42 @@ const UserAccess = () => {
 
     try {
       const res = await axios.post(
-        `${API_BASE_URL}/api/v1/users/login`, loginData,
+        `${API_BASE_URL}/api/v1/users/login`,
+        loginData,
         {
-    phoneno: data.phoneno,
-    password: data.password
-  },
-        { 
           withCredentials: true,
-          headers: { 'Content-Type': 'application/json' } }
+          headers: { 'Content-Type': 'application/json' }
+        }
       );
 
       if (res && (res.status === 200 || res.status === 201)) {
-        console.log('Logged in successfully :', res.data);
+        updateBooking({
+          isAuthenticated: true,
+          visitors: {
+            ...booking.visitors,
+            name: loginContact,
+            contact: loginContact,
+          },
+        });
+
+        const nextPath = booking.pendingPath || '/details';
+        navigate(nextPath);
       } else {
-        console.warn('Login Api responded with unexpected error: ', res?.status, res?.data);
-        alert('Something went wrong!!');
+        setErrorMsg('Something went wrong!!');
       }
     } catch (err) {
       const msg = err?.response?.data?.message || "Invalid login credentials";
       setErrorMsg(msg);
-      return;
     }
-
-    updateBooking({
-      isAuthenticated: true,
-      visitors: {
-        ...booking.visitors,
-        name: loginContact,
-        contact: loginContact,
-      },
-    })
-    const nextPath = booking.pendingPath || '/details'
-    navigate(nextPath)
-  }
+  };
 
   const handleSignup = async (e) => {
-    e.preventDefault()
-    setErrorMsg("")
+    e.preventDefault();
+    setErrorMsg("");
 
     if (password !== confirmPassword) {
-      alert('Passwords do not match!')
-      return
+      alert('Passwords do not match!');
+      return;
     }
 
     const userInfo = {
@@ -101,38 +96,52 @@ const UserAccess = () => {
     };
 
     try {
-      const res = await axios.post(
-        `${API_BASE_URL}/api/v1/users/register`, userInfo,
-        { 
+      const registerRes = await axios.post(
+        `${API_BASE_URL}/api/v1/users/register`,
+        userInfo,
+        {
           withCredentials: true,
-          headers: { 'Content-Type': 'application/json' } }
+          headers: { 'Content-Type': 'application/json' }
+        }
       );
 
-      if (res && (res.status === 200 || res.status === 201)) {
-        // console.log('Signup success');
-
-        updateBooking({
-          isAuthenticated: true,
-          visitors: {
-            ...booking.visitors,
-            name: `${firstname} ${lastname}`,
-            contact: phoneno,
+      if (registerRes && (registerRes.status === 200 || registerRes.status === 201)) {
+        const loginRes = await axios.post(
+          `${API_BASE_URL}/api/v1/users/login`,
+          {
+            phoneno: phoneno.trim(),
+            password
           },
-        })
+          {
+            withCredentials: true,
+            headers: { 'Content-Type': 'application/json' }
+          }
+        );
 
-        alert('Account created successfully!')
-        const nextPath = booking.pendingPath || '/details'
-        navigate(nextPath)
+        if (loginRes && (loginRes.status === 200 || loginRes.status === 201)) {
+          updateBooking({
+            isAuthenticated: true,
+            visitors: {
+              ...booking.visitors,
+              name: `${firstname} ${lastname}`,
+              contact: phoneno,
+            },
+          });
+
+          alert('Account created successfully!');
+          const nextPath = booking.pendingPath || '/details';
+          navigate(nextPath);
+        } else {
+          setErrorMsg('Registered, but login failed. Please login manually.');
+        }
       } else {
-        setErrorMsg('Something went wrong during registration')
+        setErrorMsg('Something went wrong during registration');
       }
     } catch (err) {
-      console.error(err);
       const msg = err?.response?.data?.message || "User already exists!!";
       setErrorMsg(msg);
-      return;
     }
-  }
+  };
 
   const handleSendResetOtp = (e) => {
     e.preventDefault()
@@ -284,10 +293,10 @@ const UserAccess = () => {
                       required
                       minLength="6"
                       className={`mt-2 w-full rounded-xl border-2 bg-white px-4 py-3 pr-12 transition hover:border-brand-orange focus:border-brand-orange focus:outline-none ${confirmNewPassword && newPassword !== confirmNewPassword
-                          ? 'border-red-500'
-                          : confirmNewPassword && newPassword === confirmNewPassword
-                            ? 'border-green-500'
-                            : 'border-gray-300'
+                        ? 'border-red-500'
+                        : confirmNewPassword && newPassword === confirmNewPassword
+                          ? 'border-green-500'
+                          : 'border-gray-300'
                         }`}
                     />
                     <button
@@ -493,10 +502,10 @@ const UserAccess = () => {
                     minLength="6"
                     placeholder="Re-enter password"
                     className={`mt-2 w-full rounded-xl border-2 bg-white px-4 py-3 pr-12 transition hover:border-brand-orange focus:border-brand-orange focus:outline-none ${confirmPassword && password !== confirmPassword
-                        ? 'border-red-500'
-                        : confirmPassword && password === confirmPassword
-                          ? 'border-green-500'
-                          : 'border-gray-300'
+                      ? 'border-red-500'
+                      : confirmPassword && password === confirmPassword
+                        ? 'border-green-500'
+                        : 'border-gray-300'
                       }`}
                   />
 
