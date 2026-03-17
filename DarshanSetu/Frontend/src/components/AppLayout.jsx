@@ -34,18 +34,18 @@ const AppLayout = ({ children }) => {
 
   const t = useTranslation()
 
-  useEffect(() => {  //closes dropdown and scroll to top (user changes page)
+  useEffect(() => {  
     setBookingsOpen(false)
     setLanguageOpen(false)
     setProfileOpen(false)
     window.scrollTo(0, 0)
   }, [location.pathname])
 
-  useEffect(() => {  //update <html lang=""> (user changes language)
+  useEffect(() => {  
     document.documentElement.lang = language
   }, [language])
 
-  useEffect(() => { //auto-select latest booking (booking history updates)
+  useEffect(() => { 
     setSelectedHistory(booking.pastBookings?.[0] ?? null)
   }, [booking.pastBookings])
 
