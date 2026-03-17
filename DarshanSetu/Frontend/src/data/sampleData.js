@@ -1,5 +1,5 @@
 import kashiImg from "../assets/temples/kashi.jpg";
-import somnathImg from "../assets/temples/somnath.jpg";
+import somnathImg from "../assets/temples/Somnath_Temple.jpg";
 import dwarkadhishImg from "../assets/temples/dwarkadhish.avif";
 import tirupatiImg from "../assets/temples/tirupati.avif";
 import maduraiImg from "../assets/temples/madurai.webp";
