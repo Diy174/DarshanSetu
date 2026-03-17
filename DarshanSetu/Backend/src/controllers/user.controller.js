@@ -24,28 +24,28 @@ const generateAccessAndRefereshTokens = async (userId) => {
 }
 
 const registerUser = AsyncHandler(async (req, res) => {
-  const { lastname, firstname, phoneno, password } = req.body
+    const { lastname, firstname, phoneno, password } = req.body
 
-  if (!firstname?.trim() || !lastname?.trim() || !password?.trim() || !phoneno) {
-    throw new ApiError(400, "All fields are required")
-  }
+    if (!firstname?.trim() || !lastname?.trim() || !password?.trim() || !phoneno) {
+        throw new ApiError(400, "All fields are required")
+    }
 
-  const existedUser = await User.findOne({ phoneno })
-  if (existedUser) {
-    throw new ApiError(409, "Phone number is already registered")
-  }
+    const existedUser = await User.findOne({ phoneno })
+    if (existedUser) {
+        throw new ApiError(409, "Phone number is already registered")
+    }
 
-  const user = await User.create({
-    firstname: firstname.trim(),
-    lastname: lastname.trim(),
-    phoneno,
-    password,
-  })
+    const user = await User.create({
+        firstname: firstname.trim(),
+        lastname: lastname.trim(),
+        phoneno,
+        password,
+    })
 
-  const createdUser = await User.findById(user._id).select("-password -refreshToken")
-  if (!createdUser) throw new ApiError(500, "Something went wrong while registering the user")
+    const createdUser = await User.findById(user._id).select("-password -refreshToken")
+    if (!createdUser) throw new ApiError(500, "Something went wrong while registering the user")
 
-  return res.status(201).json(new ApiResponse(200, createdUser, "User Registered Successfully"))
+    return res.status(201).json(new ApiResponse(200, createdUser, "User Registered Successfully"))
 })
 
 
@@ -138,7 +138,8 @@ const logoutUser = AsyncHandler(async (req, res) => {
 
     const options = {
         httpOnly: true,
-        secure: true
+        secure: true,
+        sameSite: "none"
     }
 
     return res.status(200)
@@ -172,7 +173,8 @@ const refreshAccessToken = AsyncHandler(async (req, res) => {
 
         const options = {
             httpOnly: true,
-            secure: true
+            secure: true,
+            sameSite: "none"
         }
 
         const { accessToken, refreshToken: newRefreshToken } = await generateAccessAndRefereshTokens(user._id)
@@ -243,6 +245,9 @@ const registerBooking = AsyncHandler(async (req, res) => {
             throw new ApiError(400, `Visitor ${i + 1}: Valid type (visitor/elder/differentlyAbled) is required`)
         }
     }
+    console.log("REQ USER:", req.user);
+    console.log("REQ COOKIES:", req.cookies);
+    console.log("BOOKING BODY:", req.body);
 
     if (!req.user?._id) {
         throw new ApiError(401, "User must be logged in to make a booking")
