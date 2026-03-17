@@ -117,7 +117,7 @@ const VisitorDetails = () => {
       slot: booking.visitSlot,
     }
 
-    try {
+    try { 
       const res = await axios.post(
         `${API_BASE_URL}/api/v1/bookings/booking`,
         bookingInfo,

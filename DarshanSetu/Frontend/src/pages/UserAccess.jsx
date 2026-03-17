@@ -51,7 +51,9 @@ const UserAccess = () => {
     try {
       const res = await axios.post(
         `${API_BASE_URL}/api/v1/users/login`, loginData,
-        { headers: { 'Content-Type': 'application/json' } }
+        { 
+          withCredentials: true,
+          headers: { 'Content-Type': 'application/json' } }
       );
 
       if (res && (res.status === 200 || res.status === 201)) {
@@ -97,7 +99,9 @@ const UserAccess = () => {
     try {
       const res = await axios.post(
         `${API_BASE_URL}/api/v1/users/register`, userInfo,
-        { headers: { 'Content-Type': 'application/json' } }
+        { 
+          withCredentials: true,
+          headers: { 'Content-Type': 'application/json' } }
       );
 
       if (res && (res.status === 200 || res.status === 201)) {
@@ -153,7 +157,7 @@ const UserAccess = () => {
     try {
       const res = await axios.post(
         `${API_BASE_URL}/api/v1/users/reset-password`, userInfo,
-        { headers: { 'Content-Type': 'application/json' } }
+        { withCredentials: true, headers: { 'Content-Type': 'application/json' } }
       );
 
       if (res && (res.status === 200 || res.status === 201)) {
