@@ -4,6 +4,9 @@ import { useBooking } from '../context/BookingContext'
 import useTranslation from '../hooks/useTranslation'
 import axios from 'axios'
 
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const UserAccess = () => {
   const navigate = useNavigate()
   const { booking, updateBooking } = useBooking()
