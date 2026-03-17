@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color: #1a1a2e;
+    background-color: #fef7f0;
+  }
+
+  body {
+    @apply bg-brand-smoke text-brand-dusk font-sans min-h-screen;
+    background: linear-gradient(to bottom right, #fef7f0, #fef3e8, #fff8dc);
+  }
+
+  #root {
+    @apply min-h-screen;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+  
+  .animate-pulse {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@layer components {
+  .page-shell {
+    @apply mx-auto max-w-6xl px-6 pb-16 pt-10;
+  }
+
+  .glass-panel {
+    @apply rounded-3xl bg-white p-8 shadow-xl;
+  }
+
+  .section-heading {
+    @apply font-display text-3xl text-brand-dusk;
+  }
+
+  .tag {
+    @apply rounded-full bg-brand-sand/70 px-4 py-1 text-sm font-medium text-brand-dusk;
+  }
+}
