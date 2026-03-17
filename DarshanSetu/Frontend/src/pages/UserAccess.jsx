@@ -51,6 +51,10 @@ const UserAccess = () => {
     try {
       const res = await axios.post(
         `${API_BASE_URL}/api/v1/users/login`, loginData,
+        {
+    phoneno: data.phoneno,
+    password: data.password
+  },
         { 
           withCredentials: true,
           headers: { 'Content-Type': 'application/json' } }
